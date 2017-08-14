@@ -688,8 +688,9 @@ if ~isempty(handles.eyeCatch.lib) && handles.eyeCatch.active
         %----
         if ~isempty(handles.ICMARC.model)
             predClassString = {'blink', 'neural', 'heart', 'lat', 'muscle', 'mixed'};
-            [predclass, predprob] = runIcMarc(handles.ICMARC.model, Winv, handles.chanlocs, handles.ICMARC.virtual_chanlocs, handles.ICMARC.cdn_m);
-            set(handles.(['predclass' int2str(it)]),'String',predClassString(predclass(it)));
+            [predclass, predprob] = runIcMarc(handles.ICMARC.model, Winv(:,it), handles.chanlocs, handles.ICMARC.virtual_chanlocs, handles.ICMARC.cdn_m);
+%             set(handles.(['predclass' int2str(it)]),'String',predClassString(predclass(it)));
+            set(handles.(['predclass' int2str(it)]),'String',predClassString(predclass));
         end
         %----
         
