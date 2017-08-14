@@ -1,4 +1,4 @@
-function cdn = current_density_norm_light(virtual_topography, virtual_chanlocs)
+function cdn = current_density_norm_light(virtual_topography, virtual_chanlocs, cdn_matrix)
 % current_density_norm calculates the current density norm as described in 
 % Automatic Classification of Artifactual ICA-Components for Artifact 
 % Removal in EEG Signals by Irene Winkler, Stefan Haufe and Michael 
@@ -32,7 +32,10 @@ function cdn = current_density_norm_light(virtual_topography, virtual_chanlocs)
 icawinv = virtual_topography';
 
 A = icawinv;
-load('dipolfit_matrix'); % loads M100, clab
+% load('dipolfit_matrix'); % loads M100, clab
+clab = cdn_matrix.clab;
+M100 = cdn_matrix.M100;
+
 channel_labels={virtual_chanlocs.labels};
 [dummy, idx_M, idx_IC] = intersect(lower(clab), channel_labels);
 
